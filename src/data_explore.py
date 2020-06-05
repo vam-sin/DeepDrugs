@@ -1,5 +1,5 @@
 import pandas as pd 
-
+import numpy as np 
 
 '''About Dataset
 
@@ -15,5 +15,22 @@ indefinitely given appropriate fresh medium and space.
 
 '''
 ds = pd.read_hdf("../Processed_Data/GSE92742_fully_restricted_prostate.hdf")
-# ds = pd.DataFrame(ds)
-print(ds)
+
+# X 
+X = np.asarray(ds)
+X = pd.DataFrame(X)
+# print(X)
+
+# y (moa)
+y_p = pd.DataFrame(ds.index)
+y_p = np.asarray(y_p)
+y = []
+for i in y_p:
+	y.append(np.asarray(i[0])[5])
+
+y = pd.DataFrame(y)
+
+df = pd.concat([X, y], axis = 1)
+print(df)
+
+df.to_csv("GSE92742_fully_restricted_prostate.csv")

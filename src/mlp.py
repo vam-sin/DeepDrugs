@@ -14,7 +14,7 @@ import keras
 from sklearn.model_selection import train_test_split
 
 # dataset import and feature generation
-ds = pd.read_hdf("../Processed_Data/GSE92742_fully_restricted.hdf")
+ds = pd.read_hdf("../Processed_Data/GSE92742_fully_restricted_prostate.hdf")
 
 # X 
 X = np.asarray(ds)
@@ -36,7 +36,7 @@ encoded_Y = encoder.transform(y)
 y = np_utils.to_categorical(encoded_Y)
 print("The classes in y are: " + str(encoder.classes_))
 num_classes = len(encoder.classes_)
-
+print(num_classes)
 # MLP 
 model = Sequential()
 model.add(Dense(512, activation = 'relu'))
